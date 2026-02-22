@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.taller.Controllers.BikeController"
+            styleClass="background-pane"
+            prefWidth="800" prefHeight="580">
+
+<children>
+    <VBox spacing="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20"
+          AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20">
+
+        <Label text="Lista de Bicicletas" styleClass="title-label"/>
+
+        <!-- FORMULARIO -->
+        <HBox spacing="30">
+
+            <VBox spacing="10" prefWidth="300">
+                <Label text="Marca:" styleClass="form-label"/>
+                <TextField fx:id="txtBrand" styleClass="text-field" promptText="no se"/>
+
+                <Label text="Tipo:" styleClass="form-label"/>
+                <ComboBox fx:id="cbType" promptText="Seleccione un tipo" />
+
+                <Label text="Color:" styleClass="form-label"/>
+                <TextField fx:id="txtColor" styleClass="text-field" promptText="rojo"/>
+
+                <Label text="Serial:" styleClass="form-label"/>
+                <TextField fx:id="txtId" styleClass="text-field" promptText="B001"/>
+
+                <Label text="Año:" styleClass="form-label"/>
+                <TextField fx:id="txtYear" styleClass="text-field" promptText="1258 A.C."/>
+            </VBox>
+
+            <!-- BOTONES -->
+            <VBox spacing="15" alignment="TOP_CENTER" prefWidth="150">
+                <Button text="💾 Guardar" styleClass="primary-btn"  onAction="#OnSave"/>
+                <Button text="✏ Modificar" styleClass="secondary-btn" onAction="#OnEdit"/>
+                <Button text="🗑 Eliminar"  styleClass="danger-btn"   onAction="#OnDelete"/>
+            </VBox>
+
+        </HBox>
+
+        <!-- TABLA -->
+        <TableView fx:id="tblBikes" prefHeight="300" styleClass="table-view">
+            <columns>
+                <TableColumn fx:id="colBrand"    text="Marca"     prefWidth="100"/>
+                <TableColumn fx:id="colType"  text="Tipo" prefWidth="200"/>
+                <TableColumn fx:id="colColor" text="Color" prefWidth="120"/>
+                <TableColumn fx:id="colId" text="Serial"  prefWidth="100"/>
+                <TableColumn fx:id="colYear" text="Año"  prefWidth="100"/>
+            </columns>
+        </TableView>
+
+    </VBox>
+</children>
+
+</AnchorPane>

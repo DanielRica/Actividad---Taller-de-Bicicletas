@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.taller.Controllers.ClientController"
+            styleClass="background-pane"
+            prefWidth="800" prefHeight="580">
+
+<children>
+    <VBox spacing="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20"
+          AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20">
+
+        <Label text="Lista de Clientes" styleClass="title-label"/>
+
+        <HBox spacing="30">
+
+            <VBox spacing="10" prefWidth="300">
+
+                <Label text="Nombres y Apellidos:" styleClass="form-label"/>
+                <TextField fx:id="txtName" styleClass="text-field"/>
+
+                <Label text="ID:" styleClass="form-label"/>
+                <TextField fx:id="txtId" styleClass="text-field"/>
+
+                <Label text="Teléfono:" styleClass="form-label"/>
+                <TextField fx:id="txtPhone" styleClass="text-field"/>
+
+                <Label text="Direccion:" styleClass="form-label"/>
+                <TextField fx:id="txtAddress" styleClass="text-field"/>
+            </VBox>
+
+            <VBox spacing="15" alignment="TOP_CENTER" prefWidth="150">
+                <Button text="💾 Guardar" styleClass="primary-btn" onAction="#OnSave"/>
+                <Button text="✏ Modificar" styleClass="secondary-btn" onAction="#OnEdit"/>
+                <Button text="🗑 Eliminar"  styleClass="danger-btn" onAction="#OnDelete"/>
+            </VBox>
+
+        </HBox>
+
+        <TableView fx:id="tblClients" prefHeight="300" styleClass="table-view">
+            <columns>
+                <TableColumn fx:id="colName" text="Nombres" prefWidth="180"/>
+                <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                <TableColumn fx:id="colPhone" text="Teléfono" prefWidth="120"/>
+                <TableColumn fx:id="colAddress" text="Direccion" prefWidth="180"/>
+            </columns>
+        </TableView>
+
+    </VBox>
+</children>
+
+</AnchorPane>

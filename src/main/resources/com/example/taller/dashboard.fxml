@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.taller.Controllers.DashboardController"
+            prefWidth="1000" prefHeight="650"
+            stylesheets=""
+            styleClass="dashboard-root">
+
+<!-- ============================
+      BARRA LATERAL
+     ============================ -->
+<left>
+    <VBox spacing="20" styleClass="sidebar" prefWidth="220">
+        <padding><Insets top="20" left="20" right="20" bottom="20"/></padding>
+
+        <Label text="Taller de bicicletas" styleClass="sidebar-title"/>
+
+        <Button text="Clientes" onAction="#OnGoClients"   styleClass="nav-btn"/>
+        <Button text="Bicicletas"   onAction="#OnGoBikes"    styleClass="nav-btn"/>
+<!--        <Button text="Reparaciones"      onAction="#OnGoRepairs"      styleClass="nav-btn"/>-->
+
+    </VBox>
+</left>
+
+<!-- ============================
+      CONTENEDOR CENTRAL
+     ============================ -->
+<center>
+    <StackPane fx:id="mainContent" styleClass="content"/>
+</center>
+
+</BorderPane>
