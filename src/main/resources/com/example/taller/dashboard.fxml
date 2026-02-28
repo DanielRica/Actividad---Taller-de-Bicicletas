@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.geometry.Insets?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.taller.Controllers.DashboardController"
-            prefWidth="1000" prefHeight="650"
-            stylesheets=""
-            styleClass="dashboard-root">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="650" prefWidth="1000" styleClass="dashboard-root" stylesheets="" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.taller.Controllers.DashboardController">
 
 <!-- ============================
       BARRA LATERAL
      ============================ -->
 <left>
-    <VBox spacing="20" styleClass="sidebar" prefWidth="220">
-        <padding><Insets top="20" left="20" right="20" bottom="20"/></padding>
+    <VBox prefWidth="220" spacing="20" styleClass="sidebar">
+        <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
 
-        <Label text="Taller de bicicletas" styleClass="sidebar-title"/>
+        <Label styleClass="sidebar-title" text="Taller de bicicletas" />
 
-        <Button text="Clientes" onAction="#OnGoClients"   styleClass="nav-btn"/>
-        <Button text="Bicicletas"   onAction="#OnGoBikes"    styleClass="nav-btn"/>
+        <Button onAction="#OnGoClients" styleClass="nav-btn" text="Clientes" />
+        <Button onAction="#OnGoBikes" styleClass="nav-btn" text="Bicicletas" />
+         <Button onAction="#OnGoMechanics" styleClass="nav-btn" text="Mecánicos" />
+         <Button onAction="#OnGoServiceOrder" styleClass="nav-btn" text="Añadir Orden de Servicio" />
 <!--        <Button text="Reparaciones"      onAction="#OnGoRepairs"      styleClass="nav-btn"/>-->
 
     </VBox>
@@ -30,7 +31,7 @@
       CONTENEDOR CENTRAL
      ============================ -->
 <center>
-    <StackPane fx:id="mainContent" styleClass="content"/>
+    <StackPane fx:id="mainContent" styleClass="content" />
 </center>
 
 </BorderPane>

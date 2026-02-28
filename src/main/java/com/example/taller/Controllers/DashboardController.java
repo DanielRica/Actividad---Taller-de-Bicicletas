@@ -63,6 +63,54 @@ public class DashboardController {
         }
     }
 
+    @FXML
+    private void OnGoMechanics() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/taller/mechanic.fxml"));
+            Parent mechanics = loader.load();
+
+            /*
+            Obtener el controlador de Mecánicos
+             */
+            MechanicController controller = loader.getController();
+
+            /*
+            Reemplazar el contenido del contenedor principal
+             */
+            mainContent.getChildren().clear();
+            mainContent.getChildren().add(mechanics);
+            VBox.setVgrow(mechanics, Priority.ALWAYS);
+
+        } catch (IOException e) {
+            showAlert("Error", "No se pudo cargar la lista de mecánicos", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void OnGoServiceOrder() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/taller/serviceOrder.fxml"));
+            Parent orders = loader.load();
+
+            /*
+            Obtener el controlador de servicios
+             */
+            ServiceOrderController controller = loader.getController();
+
+            /*
+            Reemplazar el contenido del contenedor principal
+             */
+            mainContent.getChildren().clear();
+            mainContent.getChildren().add(orders);
+            VBox.setVgrow(orders, Priority.ALWAYS);
+
+        } catch (IOException e) {
+            showAlert("Error", "No se pudo cargar la lista de mecánicos", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
+
     private void showAlert(String titulo, String mensaje, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);

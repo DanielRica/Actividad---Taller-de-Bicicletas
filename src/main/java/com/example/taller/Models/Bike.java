@@ -7,13 +7,23 @@ public class Bike {
     private String color;
     private String id;
     private String year;
+    private Client owner;
 
-    public Bike(String brand, String type, String color, String id, String year) {
+    public Bike(String brand, String type, String color, String id, String year, Client owner) {
         this.brand = brand;
         this.type = type;
         this.color = color;
         this.id = id;
         this.year = year;
+        this.owner = owner;
+    }
+
+    public Client getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Client owner) {
+        this.owner = owner;
     }
 
     public String getBrand() {
@@ -62,8 +72,9 @@ public class Bike {
                 "brand='" + brand + '\'' +
                 ", type='" + type + '\'' +
                 ", color='" + color + '\'' +
-                ", id=" + id +
-                ", year=" + year +
+                ", id='" + id + '\'' +
+                ", year='" + year + '\'' +
+                ", owner=" + owner +
                 '}';
     }
 }

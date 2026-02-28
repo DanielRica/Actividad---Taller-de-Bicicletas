@@ -1,7 +1,9 @@
 package com.example.taller.Controllers;
 
 import com.example.taller.Models.Bike;
+import com.example.taller.Models.Client;
 import com.example.taller.Repositories.BikeRepository;
+import com.example.taller.Repositories.ClientRepository;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -21,8 +23,6 @@ public class BikeController {
     private TextField txtId;
     @FXML
     private TextField txtYear;
-
-
     @FXML
     private TableView<Bike> tblBikes;
     @FXML
@@ -39,6 +39,9 @@ public class BikeController {
     private BikeRepository repository;
 
     @FXML
+    private ComboBox<Client> ownerSelect;
+
+    @FXML
     public void initialize() {
         /*
         Inicializa el repositorio y configura la tabla
@@ -50,28 +53,51 @@ public class BikeController {
         colColor.setCellValueFactory(c -> new ReadOnlyStringWrapper(c.getValue().getColor()));
         colId.setCellValueFactory(c -> new ReadOnlyStringWrapper(c.getValue().getId()));
         colYear.setCellValueFactory(c -> new ReadOnlyStringWrapper(c.getValue().getYear()));
-
+        colId.setCellValueFactory(c ->
+                new ReadOnlyStringWrapper(c.getValue().getOwner().getId())
+        );
         tblBikes.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldV, newV) -> {
                     if (newV != null) {
                         txtBrand.setText(newV.getBrand());
-                        txtColor.setText(newV.getType());
-                        cbType.setValue(newV.getColor());
+                        txtColor.setText(newV.getColor());
+                        cbType.setValue(newV.getType());
                         txtId.setText(newV.getId());
                         txtYear.setText(newV.getYear());
-
+                        ownerSelect.setValue(newV.getOwner());
                     }
                 }
         );
 
         /*
-        Opciones del combo box
+        Opciones de los combo box
          */
         cbType.setItems(FXCollections.observableArrayList(
                 "Ruta", "MTB", "Urbana", "Eléctrica", "De carrera"
         ));
 
         load();
+        ownerSelect.setItems(FXCollections.observableArrayList(
+                ClientRepository.getInstancia().getAll()
+        ));
+        /*
+        Mostrar solo id cliente
+         */
+        ownerSelect.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Client item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? null : item.getId());
+            }
+        });
+
+        ownerSelect.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Client item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? null : item.getId());
+            }
+        });
     }
 
     /*
@@ -86,13 +112,13 @@ public class BikeController {
          /*
         Validar campos vacíos
          */
-        if (txtBrand.getText().isEmpty() || cbType.getValue()== null || txtColor.getText().isEmpty() || txtId.getText().isEmpty() ||  txtYear.getText().isEmpty()) {
+        if (txtBrand.getText().isEmpty() || cbType.getValue()== null || txtColor.getText().isEmpty() || txtId.getText().isEmpty() ||  txtYear.getText().isEmpty() || ownerSelect.getValue()== null) {
             showAlert("Advertencia", "Por favor complete todos los campos", Alert.AlertType.INFORMATION);
             return;
         }
 
         try {
-            Bike bike = new Bike(txtBrand.getText().trim(), cbType.getValue(), txtColor.getText().trim(), txtId.getText().trim(), txtYear.getText().trim());
+            Bike bike = new Bike(txtBrand.getText().trim(), cbType.getValue(), txtColor.getText().trim(), txtId.getText().trim(), txtYear.getText().trim(), ownerSelect.getValue());
             repository.add(bike);
             load();
             clear();
@@ -114,7 +140,7 @@ public class BikeController {
         }
 
         try {
-            Bike bike = new Bike(txtBrand.getText().trim(), cbType.getValue().trim(), txtColor.getText().trim(), txtId.getText().trim(), txtYear.getText().trim());
+            Bike bike = new Bike(txtBrand.getText().trim(), cbType.getValue().trim(), txtColor.getText().trim(), txtId.getText().trim(), txtYear.getText().trim(), ownerSelect.getValue());
             repository.update(bike);
             load();
             clear();
