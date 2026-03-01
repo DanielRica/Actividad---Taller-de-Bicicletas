@@ -17,6 +17,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class ServiceOrderController {
+
+    @FXML
+    private ComboBox<Bike> cbNumber1;
+
     @FXML
     private ComboBox<Mechanic> cbMechanic;
 
@@ -77,9 +81,7 @@ public class ServiceOrderController {
     private ServiceOrderRepository repository;
     @FXML
     public void initialize() {
-
         repository = ServiceOrderRepository.getInstancia();
-
         /*Configurar spinners*/
         hourSp.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 8));
         minuteSp.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 45, 0, 15));
@@ -125,16 +127,17 @@ public class ServiceOrderController {
                     }
                 }
         );
-
-        /*Cargar bicicletas en combo*/
+        /*Cargar bicicletas en combos*/
         cbNumber.setItems(FXCollections.observableArrayList(
+                BikeRepository.getInstancia().getAll()
+        ));
+        cbNumber1.setItems(FXCollections.observableArrayList(
                 BikeRepository.getInstancia().getAll()
         ));
         /*Cargar mecánicos en combo*/
         cbMechanic.setItems(FXCollections.observableArrayList(
                 MechanicRepository.getInstancia().getAll()
         ));
-
         /*Mostrar solo id de bicicleta*/
         cbNumber.setCellFactory(lv -> new ListCell<>() {
             @Override
@@ -143,6 +146,30 @@ public class ServiceOrderController {
                 setText(empty ? null : item.getId());
             }
         });
+        cbNumber1.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Bike item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? null : item.getId());
+            }
+        });
+        cbNumber.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Bike item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? null : item.getId());
+            }
+        });
+        load();
+
+        cbNumber1.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Bike item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? null : item.getId());
+            }
+        });
+        load();
         /*Mostrar solo nombre del mecánico*/
         cbMechanic.setCellFactory(lv -> new ListCell<>() {
             @Override
@@ -160,15 +187,7 @@ public class ServiceOrderController {
             }
         });
 
-        cbNumber.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(Bike item, boolean empty) {
-                super.updateItem(item, empty);
-                setText(empty ? null : item.getId());
-            }
-        });
 
-        load();
     }
 
     private void load() {
@@ -177,14 +196,11 @@ public class ServiceOrderController {
 
     @FXML
     void OnSave(ActionEvent event) {
-
         if (datePicker.getValue() == null || cbNumber.getValue() == null || txtServiceMotive.getText().isEmpty() || cbMechanic.getValue() == null || txtDiagnosis.getText().isEmpty() || txtWorkDone.getText().isEmpty() || txtPrice.getText().isEmpty()) {
             showAlert("Advertencia", "Complete todos los campos", Alert.AlertType.INFORMATION);
             return;
         }
-
         try {
-
             LocalDate date = datePicker.getValue();
             LocalTime time = LocalTime.of(hourSp.getValue(), minuteSp.getValue());
             double price = Double.parseDouble(txtPrice.getText());
@@ -192,7 +208,6 @@ public class ServiceOrderController {
             repository.add(order);
             load();
             clear();
-
         } catch (NumberFormatException e) {
             showAlert("Error", "Precio inválido", Alert.AlertType.ERROR);
         }
@@ -227,7 +242,6 @@ public class ServiceOrderController {
 
     @FXML
     void OnFilter(ActionEvent event) {
-        System.out.print("filtrar");
         LocalDate selectedDate = dateFilter.getValue();
         if (selectedDate == null) {
             showAlert("Advertencia", "Seleccione una fecha", Alert.AlertType.INFORMATION);
@@ -261,5 +275,31 @@ public class ServiceOrderController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         alerta.showAndWait();
+    }
+
+    public void OnEraseFilter(ActionEvent actionEvent) {
+        dateFilter.setValue(null);
+        load();
+    }
+
+    public void OnFilter2(ActionEvent actionEvent) {
+        Bike selectedBike = cbNumber1.getValue();
+        if (selectedBike == null) {
+            showAlert("Advertencia", "Seleccione una bicicleta", Alert.AlertType.INFORMATION);
+            return;
+        }
+        ObservableList<ServiceOrder> listaFiltrada =
+                FXCollections.observableArrayList();
+        for (ServiceOrder order : repository.getAll()) {
+            if (order.getBike().equals(selectedBike)) {
+                listaFiltrada.add(order);
+            }
+        }
+        tblDiagnosis.setItems(listaFiltrada);
+    }
+
+    public void OnEraseFilter2(ActionEvent actionEvent) {
+        cbNumber.setValue(null);
+        load();
     }
 }

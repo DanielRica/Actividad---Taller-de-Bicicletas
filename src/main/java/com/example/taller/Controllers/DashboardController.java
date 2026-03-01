@@ -106,7 +106,7 @@ public class DashboardController {
             VBox.setVgrow(orders, Priority.ALWAYS);
 
         } catch (IOException e) {
-            showAlert("Error", "No se pudo cargar la lista de mecánicos", Alert.AlertType.ERROR);
+            showAlert("Error", "No se pudo cargar la lista de ordenes", Alert.AlertType.ERROR);
             e.printStackTrace();
         }
     }

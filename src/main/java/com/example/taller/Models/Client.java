@@ -1,25 +1,15 @@
 package com.example.taller.Models;
 
-public class Client {
-
-    private String name;
+public class Client extends Person{
     private String id;
     private String Phone;
     private String direction;
 
     public Client(String name, String id, String Phone, String direction) {
-        this.name = name;
+       super(name);
         this.id = id;
         this.Phone = Phone;
         this.direction = direction;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getId() {
@@ -49,7 +39,7 @@ public class Client {
     @Override
     public String toString() {
         return "Client{" +
-                "name='" + name + '\'' +
+                "name='" + super.getName() + '\'' +
                 ", id=" + id +
                 ", Phone=" + Phone +
                 ", direction='" + direction + '\'' +

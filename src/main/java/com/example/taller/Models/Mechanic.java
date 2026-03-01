@@ -1,22 +1,13 @@
 package com.example.taller.Models;
 
-public class Mechanic {
-    private String name;
+public class Mechanic extends Person{
     private String speciality;
     private String cNumber;
 
     public Mechanic(String name, String speciality, String cNumber) {
-        this.name = name;
+        super(name);
         this.speciality = speciality;
         this.cNumber = cNumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getSpeciality() {
@@ -35,7 +26,7 @@ public class Mechanic {
     @Override
     public String toString() {
         return "Mechanic{" +
-                "name='" + name + '\'' +
+                "name='" + super.getName() + '\'' +
                 ", speciality='" + speciality + '\'' +
                 ", cNumber='" + cNumber + '\'' +
                 '}';

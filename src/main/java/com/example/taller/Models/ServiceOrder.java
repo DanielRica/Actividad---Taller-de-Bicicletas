@@ -13,10 +13,10 @@ public class ServiceOrder {
     private String diagnosis;
     private String workPerformed;
     private double totalCost;
-    private int contador = 0;
+    private int counter = 0;
 
     public ServiceOrder(LocalDate entryDate, LocalTime entryTime, Bike bike, Mechanic mechanic, String serviceReason, String diagnosis, String workPerformed, double totalCost) {
-        this.id = contador++;
+        this.id = counter++;
         this.entryDate = entryDate;
         this.entryTime = entryTime;
         this.bike = bike;

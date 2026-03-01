@@ -34,6 +34,8 @@ public class BikeController {
     @FXML
     private TableColumn<Bike, String> colId;
     @FXML
+    private TableColumn<Bike, String> colOwner;
+    @FXML
     private TableColumn<Bike, String> colYear;
 
     private BikeRepository repository;
@@ -53,8 +55,7 @@ public class BikeController {
         colColor.setCellValueFactory(c -> new ReadOnlyStringWrapper(c.getValue().getColor()));
         colId.setCellValueFactory(c -> new ReadOnlyStringWrapper(c.getValue().getId()));
         colYear.setCellValueFactory(c -> new ReadOnlyStringWrapper(c.getValue().getYear()));
-        colId.setCellValueFactory(c ->
-                new ReadOnlyStringWrapper(c.getValue().getOwner().getId())
+        colOwner.setCellValueFactory(c -> new ReadOnlyStringWrapper(c.getValue().getOwner().getId())
         );
         tblBikes.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldV, newV) -> {
@@ -166,6 +167,8 @@ public class BikeController {
         txtBrand.clear();
         txtColor.clear();
         cbType.setValue(null);
+        txtYear.clear();
+        ownerSelect.setValue(null);
     }
 
     private void showAlert(String titulo, String mensaje, Alert.AlertType tipo) {

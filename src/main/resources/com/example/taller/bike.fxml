@@ -75,7 +75,7 @@
                 <TableColumn fx:id="colColor" prefWidth="120" text="Color" />
                 <TableColumn fx:id="colId" prefWidth="100" text="Serial" />
                 <TableColumn fx:id="colYear" prefWidth="100" text="Año" />
-               <TableColumn fx:id="colId" prefWidth="330.0" text="Dueño" />
+               <TableColumn fx:id="colOwner" prefWidth="330.0" text="Dueño" />
             </columns>
         </TableView>
 
