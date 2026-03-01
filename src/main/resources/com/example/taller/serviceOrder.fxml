@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -12,83 +13,136 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="580" prefWidth="800" styleClass="background-pane" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.taller.Controllers.ServiceOrderController">
+<AnchorPane prefHeight="580" prefWidth="800" styleClass="main-content" stylesheets="@Styles/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.taller.Controllers.ServiceOrderController">
 
 <children>
-    <VBox spacing="20" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
 
-        <Label styleClass="title-label" text="Crear Orden de Servicio" />
+     <Label styleClass="header-title" text="Crear Orden de Servicio" AnchorPane.leftAnchor="5.0" />
+    <VBox spacing="25.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
 
         <!-- FORMULARIO -->
         <HBox spacing="30">
    
-            <VBox prefWidth="300" spacing="10">
+            <VBox prefWidth="300" styleClass="form">
                 <Label styleClass="form-label" text="Fecha de ingreso" />
-               <DatePicker fx:id="datePicker" />
+               <DatePicker fx:id="datePicker" styleClass="text-area" />
    
                 <Label styleClass="form-label" text="Hora:" />
-               <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <HBox prefHeight="100.0" prefWidth="200.0">
                   <children>
-                     <Spinner fx:id="hourSp" layoutX="14.0" layoutY="1.0" prefHeight="26.0" prefWidth="106.0" />
-                     <Spinner fx:id="minuteSp" layoutX="155.0" layoutY="1.0" prefHeight="26.0" prefWidth="106.0" />
+                     <Spinner fx:id="hourSp" prefHeight="26.0" prefWidth="106.0" styleClass="text-area-mini" />
+                     <Spinner fx:id="minuteSp" prefHeight="26.0" prefWidth="106.0" styleClass="text-area-mini" />
                   </children>
-               </AnchorPane>
+               </HBox>
+               <VBox>
+                  <children>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Label styleClass="form-label-mini" text="Mecánico Asignado:" />
+               
+                                              <Label styleClass="form-label-mini" text="Bicicleta:" />
+                        </children>
+                     </HBox>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <ComboBox fx:id="cbMechanic" prefWidth="150.0" promptText="Mecánico Asignado" styleClass="text-area-mini" />
+                           <ComboBox fx:id="cbNumber" prefWidth="150.0" promptText="Número Serial" styleClass="text-area-mini" />
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
    
-                <Label styleClass="form-label" text="Bicicleta:" />
-               <ComboBox fx:id="cbNumber" prefWidth="150.0" promptText="Número Serial" />
-               <Label styleClass="form-label" text="Mecánico Asignado:" />
-               <ComboBox fx:id="cbMechanic" prefWidth="150.0" promptText="Mecánico Asignado" />
+                      <Label styleClass="form-label" text="Motivo del Servicio" />
+                <TextField fx:id="txtServiceMotive" promptText="Escriba el motivo del servicio" styleClass="text-area" />
    
-                <Label styleClass="form-label" text="Motivo del Servicio" />
-                <TextField fx:id="txtServiceMotive" promptText="Escriba el motivo del servicio" styleClass="text-field" />
-   
-                <Label styleClass="form-label" text="Diagnóstico:" />
-                <TextField fx:id="txtDiagnosis" promptText="Escriba el diagnóstico de la bicicleta" styleClass="text-field" />
+                      <Label styleClass="form-label" text="Diagnóstico:" />
+                <TextField fx:id="txtDiagnosis" promptText="Escriba el diagnóstico de la bicicleta" styleClass="text-area" />
             </VBox>
-
+   
             <!-- BOTONES -->
-            <VBox alignment="TOP_CENTER" prefWidth="150" spacing="15">
+            <VBox alignment="TOP_CENTER" prefWidth="150">
                <children>
                   <Label styleClass="form-label" text="Trabajos Realizados:" />
-                  <TextField fx:id="txtWorkDone" promptText="Escriba el trabajo realizado" styleClass="text-field" />
+                  <TextField fx:id="txtWorkDone" promptText="Escriba el trabajo realizado" styleClass="text-area" />
                   <Label styleClass="form-label" text="Coste Total:" />
-                  <TextField fx:id="txtPrice" promptText="Escriba el coste total" styleClass="text-field" />
+                  <TextField fx:id="txtPrice" promptText="Escriba el coste total" styleClass="text-area" />
                   <Label styleClass="form-label" text="Filtrar por día:" />
-                  <DatePicker fx:id="dateFilter" />
-                  <AnchorPane prefHeight="22.0" prefWidth="142.0">
+                  <HBox>
                      <children>
-                        <Button layoutY="1.0" onAction="#OnFilter" styleClass="primary-btn" text="📅 Filtrar" />
-                        <Button layoutX="71.0" layoutY="1.0" onAction="#OnEraseFilter" styleClass="primary-btn" text="📅 Borrar" />
+                        <DatePicker fx:id="dateFilter" prefWidth="175.0" styleClass="text-area-mini">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </DatePicker>
+                        <Button onAction="#OnFilter" styleClass="nav-btn-mini" text="Filtrar">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button onAction="#OnEraseFilter" styleClass="nav-btn-mini" text="Borrar" />
                      </children>
-                  </AnchorPane>
+                  </HBox>
                   <Label styleClass="form-label" text="Filtrar por Serial:" />
-                  <ComboBox fx:id="cbNumber1" prefWidth="150.0" promptText="Número Serial" />
-                  <AnchorPane prefHeight="22.0" prefWidth="142.0">
+                  <HBox>
                      <children>
-                        <Button layoutY="1.0" onAction="#OnFilter2" styleClass="primary-btn" text="📅 Filtrar" />
-                        <Button layoutX="71.0" layoutY="1.0" onAction="#OnEraseFilter2" styleClass="primary-btn" text="📅 Borrar" />
+                        <ComboBox fx:id="cbNumber1" prefWidth="150.0" promptText="Número Serial" styleClass="text-area-mini">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Button onAction="#OnFilter2" styleClass="nav-btn-mini" text="📅 Filtrar">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button onAction="#OnEraseFilter2" styleClass="nav-btn-mini" text="📅 Borrar">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
-                  </AnchorPane>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                         <Button onAction="#OnDelete" styleClass="danger-btn-mini" text="Eliminar">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                         <Button onAction="#OnEdit" styleClass="modify-btn-mini" text="Modificar">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                         <Button onAction="#OnSave" styleClass="save-btn-mini" text="Guardar" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
             </VBox>
-             <Button onAction="#OnSave" styleClass="primary-btn" text="💾 Guardar" />
-             <Button onAction="#OnEdit" styleClass="secondary-btn" text="✏ Modificar" />
-             <Button onAction="#OnDelete" styleClass="danger-btn" text="🗑 Eliminar" />
+            <VBox.margin>
+               <Insets top="50.0" />
+            </VBox.margin>
 
         </HBox>
 
            <!-- TABLA -->
         <TableView fx:id="tblDiagnosis" prefHeight="300" styleClass="table-view">
             <columns>
-                <TableColumn fx:id="colDate" prefWidth="76.0" text="Fecha de Ingreso" />
-                <TableColumn fx:id="colHour" prefWidth="52.800048828125" text="Hora" />
-                <TableColumn fx:id="colBike" prefWidth="78.39996337890625" text="Bicicleta" />
-                <TableColumn fx:id="colMechanic" prefWidth="144.0" text="Mecánico" />
-                <TableColumn fx:id="colMotive" prefWidth="120.0" text="Motivo del Servicio" />
-               <TableColumn fx:id="colDiagnosis" prefWidth="100.79998779296875" text="Diagnóstico" />
-               <TableColumn fx:id="colWorkDone" prefWidth="98.4000244140625" text="Trabajos Realizados" />
-               <TableColumn fx:id="colPrice" prefWidth="87.199951171875" text="Precio Total" />
+                <TableColumn fx:id="colDate" prefWidth="124.79996871948242" text="Fecha de Ingreso" />
+                <TableColumn fx:id="colHour" minWidth="0.0" prefWidth="84.00003051757812" text="Hora" />
+                <TableColumn fx:id="colBike" prefWidth="111.99998474121094" text="Bicicleta" />
+                <TableColumn fx:id="colMechanic" prefWidth="128.0" resizable="false" text="Mecánico" />
+                <TableColumn fx:id="colMotive" prefWidth="148.0" text="Motivo del Servicio" />
+               <TableColumn fx:id="colDiagnosis" prefWidth="121.5999755859375" text="Diagnóstico" />
+               <TableColumn fx:id="colWorkDone" prefWidth="143.2000732421875" text="Trabajos Realizados" />
+               <TableColumn fx:id="colPrice" prefWidth="87.19998779296873" text="Precio Total" />
             </columns>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
         </TableView>
 
     </VBox>

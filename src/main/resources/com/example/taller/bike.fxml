@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -10,43 +11,61 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="580" prefWidth="800" styleClass="background-pane" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.taller.Controllers.BikeController">
+<AnchorPane prefHeight="580" prefWidth="800" styleClass="main-content" stylesheets="@Styles/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.taller.Controllers.BikeController">
 
 <children>
-    <VBox spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
 
-        <Label styleClass="title-label" text="Lista de Bicicletas" />
+     <Label styleClass="header-title" text="Lista de Bicicletas" AnchorPane.leftAnchor="5.0" />
+    <VBox spacing="25.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
 
         <!-- FORMULARIO -->
-        <HBox spacing="30">
+        <HBox>
    
-            <VBox prefWidth="300" spacing="10">
+            <VBox prefWidth="300" styleClass="form">
                 <Label styleClass="form-label" text="Marca:" />
-                <TextField fx:id="txtBrand" promptText="Escriba la  marca de la bicicleta" styleClass="text-field" />
-   
-                <Label styleClass="form-label" text="Tipo:" />
-                <ComboBox fx:id="cbType" promptText="Seleccione un tipo" />
-   
-                <Label styleClass="form-label" text="Color:" />
-                <TextField fx:id="txtColor" promptText="Escriba el color de la bicicleta" styleClass="text-field" />
-   
-                <Label styleClass="form-label" text="Serial:" />
-                <TextField fx:id="txtId" promptText="Escriba el serial de la bicicleta" styleClass="text-field" />
-   
-                <Label styleClass="form-label" text="Año:" />
-                <TextField fx:id="txtYear" promptText="Escriba el año de la bicicleta" styleClass="text-field" />
-               <Label styleClass="form-label" text="Dueño:" />
-               <ComboBox fx:id="ownerSelect" promptText="Seleccione el dueño" />
+                <TextField fx:id="txtBrand" promptText="Escriba la  marca de la bicicleta" styleClass="text-area" />
+      
+                   <Label styleClass="form-label" text="Tipo:" />
+                <ComboBox fx:id="cbType" promptText="Seleccione un tipo" styleClass="text-area" />
+      
+                   <Label styleClass="form-label" text="Color:" />
+                <TextField fx:id="txtColor" promptText="Escriba el color de la bicicleta" styleClass="text-area" />
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </VBox>
-
-            <!-- BOTONES -->
-            <VBox alignment="TOP_CENTER" prefWidth="150" spacing="15">
-                <Button onAction="#OnSave" styleClass="primary-btn" text="💾 Guardar" />
-                <Button onAction="#OnEdit" styleClass="secondary-btn" text="✏ Modificar" />
-                <Button onAction="#OnDelete" styleClass="danger-btn" text="🗑 Eliminar" />
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="form">
+               <children>
+         
+                      <Label styleClass="form-label" text="Serial:" />
+                   <TextField fx:id="txtId" promptText="Escriba el serial de la bicicleta" styleClass="text-area" />
+         
+                      <Label styleClass="form-label" text="Año:" />
+                   <TextField fx:id="txtYear" promptText="Escriba el año de la bicicleta" styleClass="text-area" />
+                  <Label styleClass="form-label" text="Dueño:" />
+                  <ComboBox fx:id="ownerSelect" promptText="Seleccione el dueño" styleClass="text-area" />
+               </children>
             </VBox>
+            <VBox.margin>
+               <Insets top="50.0" />
+            </VBox.margin>
 
         </HBox>
+         <HBox>
+            <children>
+                <Button onAction="#OnDelete" styleClass="danger-btn" text="Eliminar">
+                  <HBox.margin>
+                     <Insets right="5.0" />
+                  </HBox.margin>
+               </Button>
+                <Button onAction="#OnEdit" styleClass="modify-btn" text="Modificar" />
+                <Button onAction="#OnSave" styleClass="save-btn" text="Guardar">
+                  <HBox.margin>
+                     <Insets right="5.0" />
+                  </HBox.margin>
+               </Button>
+            </children>
+         </HBox>
 
         <!-- TABLA -->
         <TableView fx:id="tblBikes" prefHeight="300" styleClass="table-view">
@@ -56,7 +75,7 @@
                 <TableColumn fx:id="colColor" prefWidth="120" text="Color" />
                 <TableColumn fx:id="colId" prefWidth="100" text="Serial" />
                 <TableColumn fx:id="colYear" prefWidth="100" text="Año" />
-               <TableColumn fx:id="colId" prefWidth="139.20001220703125" text="Dueño" />
+               <TableColumn fx:id="colId" prefWidth="330.0" text="Dueño" />
             </columns>
         </TableView>
 

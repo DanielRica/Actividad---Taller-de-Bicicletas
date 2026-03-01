@@ -5,15 +5,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
 public class DashboardController {
     @FXML
-    private StackPane mainContent;
+    private AnchorPane mainContent;
 
     @FXML
     private void OnGoClients() {

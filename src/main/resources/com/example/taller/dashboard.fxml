@@ -1,37 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="650" prefWidth="1000" styleClass="dashboard-root" stylesheets="" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.taller.Controllers.DashboardController">
+<AnchorPane styleClass="dashboard-root" stylesheets="@Styles/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.taller.Controllers.DashboardController">
+   <children>
+      <ImageView fitHeight="610.0" fitWidth="990.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="0.0">
+         <image>
+            <Image url="@Images/unnamed-Photoroom.png" />
+         </image>
+         <effect>
+            <MotionBlur angle="190.59">
+               <input>
+                  <GaussianBlur radius="12.6" />
+               </input>
+            </MotionBlur>
+         </effect>
+      </ImageView>
+    <VBox depthTest="DISABLE" layoutX="14.0" layoutY="15.0" prefWidth="220" spacing="5.0" styleClass="side-bar">
+        <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+         </padding>
 
-<!-- ============================
-      BARRA LATERAL
-     ============================ -->
-<left>
-    <VBox prefWidth="220" spacing="20" styleClass="sidebar">
-        <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+              <Label alignment="CENTER" contentDisplay="CENTER" styleClass="sidebar-title" text="Taller De Bicicletas" textFill="WHITE" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></Label>
 
-        <Label styleClass="sidebar-title" text="Taller de bicicletas" />
-
-        <Button onAction="#OnGoClients" styleClass="nav-btn" text="Clientes" />
-        <Button onAction="#OnGoBikes" styleClass="nav-btn" text="Bicicletas" />
+              <Button onAction="#OnGoClients" styleClass="nav-btn" text="Clientes">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin></Button>
+        <Button alignment="CENTER" maxHeight="67.0" onAction="#OnGoBikes" styleClass="nav-btn" text="Bicicletas" />
          <Button onAction="#OnGoMechanics" styleClass="nav-btn" text="Mecánicos" />
          <Button onAction="#OnGoServiceOrder" styleClass="nav-btn" text="Añadir Orden de Servicio" />
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
 <!--        <Button text="Reparaciones"      onAction="#OnGoRepairs"      styleClass="nav-btn"/>-->
 
-    </VBox>
-</left>
-
-<!-- ============================
-      CONTENEDOR CENTRAL
-     ============================ -->
-<center>
-    <StackPane fx:id="mainContent" styleClass="content" />
-</center>
-
-</BorderPane>
+          </VBox>
+      <HBox layoutX="275.0" layoutY="14.0" styleClass="header">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="header-title" text="Gestor del taller de bicicletas" />
+         </children></HBox>
+      <AnchorPane fx:id="mainContent" layoutX="275.0" layoutY="94.0" styleClass="main-content" />
+   </children>
+</AnchorPane>
